@@ -1,0 +1,4 @@
+ID    Name                              Status    Prerequisite
+CS115 Object-Oriented Programming I     98/100                
+CS116 Object-Oriented Programming II      45/50           CS115
+CS117 Recursion and Algorithms      40/50           CS116
