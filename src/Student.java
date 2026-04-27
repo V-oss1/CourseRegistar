@@ -191,7 +191,7 @@ public class Student {
             if (registeredNextSemester[i] == null) {
                 registeredNextSemester[i] = course.getId();
                 course.increaseRegisteredStudents();
-                System.out.println("Succesfully registered for " + coures.getId());
+                System.out.println("Succesfully registered for " + course.getId());
                 return;
             }
         }
