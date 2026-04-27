@@ -161,21 +161,39 @@ public class Student {
 
     // adds course to next semester schedule if all checks pass 
     public void register(Course course) {
-        if (canRegister(course)) {
-        // look for empty spot in array
-            for (int i = 0; i < registeredNextSemester.length; i++) { 
-                if (registeredNextSemester[i] == null) {
-                    // place course ID into empty spot 
-                    registeredNextSemester[i] = course.getId();
-                    course.increaseRegisteredStudents();
-                    System.out.println("Registered for " + course.getId());
+        if (course == null) {
+        System.out.println("Cannot register: course does not exist.");
+        return;
+    }
+        if (!hasTakenPrereqs(course.getPrerequisites())) { 
+            System.out.println("Cannot register: missing prerequisites.");
+            return;
+        } 
 
-                    return;
-                }
+        if (!course.hasOpenSeats()) { 
+            System.out.println("Cannot register: course is full.");
+            return;
+        } 
+        if (alreadyTookCourse(course.getId())) {
+            System.out.println("Cannot register: you already completed this course.");
+            return;
+        } 
+        if (alreadyRegistered(course.getId())) {
+            System.out.println("Cannot register: you already registered for this course.");
+            return;
+        }
+        if (numberRegistered() >= 5) {
+            System.out.println("Cannot register: maximum of 5 courses reached.");
+            return;
+        }
+        // if all checks passed, add to first empty spot
+        for (int i = 0; i < registeredNextSemester.length; i++) { 
+            if (registeredNextSemester[i] == null) {
+                registeredNextSemester[i] = course.getId();
+                course.increaseRegisteredStudents();
+                System.out.println("Succesfully registered for " + coures.getId());
+                return;
             }
-        } else {
-        // if a rule failed
-            System.out.println("Cannot register for " + course.getId());
         }
     }
 
