@@ -83,7 +83,7 @@ public class Client {
                 String registeredLine = scr.nextLine();
 
                 if (!registeredLine.trim().equals("")) { 
-                    String[] registeredCourses = registeredLine.split(".");
+                    String[] registeredCourses = registeredLine.split(",");
                     currentStudent.setRegisteredNextSemester(registeredCourses);
                 }
             }
