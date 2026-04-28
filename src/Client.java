@@ -274,3 +274,12 @@ public class Client {
         }
     }
 }
+
+
+// Things  to impliment
+//     1.print courses the student has already completed
+//     2.Merge sort the course catalog by course ID for faster searching (binary search) and to print in sorted order
+//     3.impliment binary search for searching courses by ID
+//     4. add two reasonable funtions to this program 
+//         a. print the requiremnts for a course (prereqs)
+//         b. print the students current schedule (courses registered for next semester)
