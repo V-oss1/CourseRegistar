@@ -1,19 +1,19 @@
 public class Student {
 
-    // stores full name of student from txt file 
+    // stores full name of student from txt file
     private String name;
 
-    // stores A-number of student 
+    // stores A-number of student
     private String aNumber;
 
-    // sotres courses the student has completed 
+    // Stores courses the student has completed
     private String[] previousCourses;
 
-    // courses sutdent is registering for. max of 5 
+    // courses student is registering for. max of 5
     private String [] registeredNextSemester;
 
     // constructor
-    // used when Client.java creates a Student object 
+    // used when Client.java creates a Student object
     public Student(String name, String aNumber, String[] previousCourses) {
         this.name = name;
         this.aNumber = aNumber;
@@ -24,14 +24,14 @@ public class Student {
         registeredNextSemester = new String [5];
     }
 
-    // getter method 
+    // getter method
     // returns student A-number
     public String getID() {
         return aNumber;
     }
 
-    // getter method 
-    // returns student name 
+    // getter method
+    // returns student name
     public String getName() {
         return name;
     }
@@ -47,15 +47,15 @@ public class Student {
         return registeredNextSemester;
     }
 
-    // loads registered courses from file into next semester array 
-    public void setRegisteredNextSemester(String[] courses) { 
+    // loads registered courses from file into next semester array
+    public void setRegisteredNextSemester(String[] courses) {
         for (int i = 0; i < courses.length && i < registeredNextSemester.length; i++) {
             registeredNextSemester[i] = courses[i].trim();
         }
     }
 
-    
-    // checks if student completed all prerequisites 
+
+    // checks if student completed all prerequisites
     public boolean hasTakenPrereqs( String[] requiredPrereqs) {
 
         // if course doesn't have prereqs, student is allowed to register
@@ -63,59 +63,59 @@ public class Student {
             return true;
                 }
 
-        // check each required prereq 
+        // check each required prereq
         for (int i = 0; i < requiredPrereqs.length; i++) {
 
             // start as fault only turns true if finding a matching completed class
             boolean found = false;
 
             // compare every prereq w courses student has already taken
-            for (int j = 0; j < previousCourses.length; j++) { 
+            for (int j = 0; j < previousCourses.length; j++) {
                 if (requiredPrereqs[i].trim().equals(previousCourses[j].trim())) {
                     found = true;
                     break;
                 }
             }
-            // if one pre req was not found then registeration should fail asap 
+            // if one pre req was not found then registration should fail asap
             if (found == false){
                 return false;
             }
         }
-            // if loop finishes all pre reqs were found 
+            // if loop finishes all pre reqs were found
             return true;
 
         }
 
-    // check if student has already completed course before 
+    // check if student has already completed course before
     public boolean alreadyTookCourse(String courseID) {
-        // search thru completed coures lsit
-        for (int i = 0; i < previousCourses.length; i++) { 
+        // search thru completed course list
+        for (int i = 0; i < previousCourses.length; i++) {
 
             if (previousCourses[i].trim().equals(courseID)) {
                 return true;
             }
         }
-        // if not found in completed list 
-        return false; 
+        // if not found in completed list
+        return false;
     }
-        // check if student already registered this course 
+        // check if student already registered this course
         public boolean alreadyRegistered(String courseID) {
-            // serach thru next semester array
+            // search thru next semester array
             for (int i = 0; i < registeredNextSemester.length; i++) {
-                // first check if spot is empty and then compare the course ID 
+                // first check if spot is empty and then compare the course ID
             if (registeredNextSemester[i] != null && registeredNextSemester[i].equals(courseID)){
 
                     return true;
                 }
         }
-        // course was not found in registed list
-        return false; 
+        // course was not found in register list
+        return false;
         }
-    
-        // count how many classes student has registered for 
+
+        // count how many classes student has registered for
         public int numberRegistered(){
             int count = 0;
-            // every non empty space means a registed class 
+            // every non-empty space means a register class
             for (int i = 0 ; i < registeredNextSemester.length; i++) {
                 if (registeredNextSemester[i] != null){
                     count++;
@@ -131,12 +131,12 @@ public class Student {
                 return false;
         }
 
-        // must have all Prereqss 
+        // must have all Presser
         if (!hasTakenPrereqs(course.getPrerequisites())) {
             return false;
         }
 
-        // must have seats available 
+        // must have seats available
         if (!course.hasOpenSeats()) {
             return false;
         }
@@ -159,25 +159,25 @@ public class Student {
         return true;
     }
 
-    // adds course to next semester schedule if all checks pass 
+    // adds course to next semester schedule if all checks pass
     public void register(Course course) {
         if (course == null) {
         System.out.println("Cannot register: course does not exist.");
         return;
     }
-        if (!hasTakenPrereqs(course.getPrerequisites())) { 
+        if (!hasTakenPrereqs(course.getPrerequisites())) {
             System.out.println("Cannot register: missing prerequisites.");
             return;
-        } 
+        }
 
-        if (!course.hasOpenSeats()) { 
+        if (!course.hasOpenSeats()) {
             System.out.println("Cannot register: course is full.");
             return;
-        } 
+        }
         if (alreadyTookCourse(course.getId())) {
             System.out.println("Cannot register: you already completed this course.");
             return;
-        } 
+        }
         if (alreadyRegistered(course.getId())) {
             System.out.println("Cannot register: you already registered for this course.");
             return;
@@ -187,18 +187,18 @@ public class Student {
             return;
         }
         // if all checks passed, add to first empty spot
-        for (int i = 0; i < registeredNextSemester.length; i++) { 
+        for (int i = 0; i < registeredNextSemester.length; i++) {
             if (registeredNextSemester[i] == null) {
                 registeredNextSemester[i] = course.getId();
                 course.increaseRegisteredStudents();
-                System.out.println("Succesfully registered for " + course.getId());
+                System.out.println("Successfully registered for " + course.getId());
                 return;
             }
         }
     }
 
-    // prints basic student info 
-    public String toString() { 
+    // prints basic student info
+    public String toString() {
         return "Student{name='" + name + "', aNumber='" + aNumber + "'}";
     }
 }
