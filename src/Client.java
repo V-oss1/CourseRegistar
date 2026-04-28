@@ -92,7 +92,7 @@ public class Client {
                 System.out.println("Student data file not found. " + filename);
             }
     }
-
+// Move course related code to course.java
     // prints all loaded coures
     public void printAllCourses() {
         for (int i = 0; i < courseCount; i++) {
