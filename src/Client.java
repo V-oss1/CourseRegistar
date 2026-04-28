@@ -13,15 +13,14 @@ public class Client {
         Client client = new Client();
 
         // read the two input files 
-         client.readFile1("CS-26F.txt");
-         client.readFile2("A20123456.txt");
+        client.readFile1("CS-26F.txt");
+        client.readFile2("A20123456.txt");
 
         // start menu after files are loaded
         client.menu();
         
-        //logic to create client object and call methods to read files, search courses, register students, and write back to files
     }
-    
+     //logic to create client object and call methods to read files, search courses, register students, and write back to files
     public void readFile1(String filename) {
         File courseFile = new File(filename); //set file path 
         // Logic to read student data from file and initialize User object
