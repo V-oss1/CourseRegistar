@@ -92,7 +92,7 @@ public class Client {
                 System.out.println("Student data file not found. " + filename);
             }
     }
-// Move course related code to course.java
+
     // prints all loaded coures
     public void printAllCourses() {
         for (int i = 0; i < courseCount; i++) {
@@ -222,15 +222,7 @@ public class Client {
         Scanner input = new Scanner(System.in);
         while (true){
 
-            System.out.println("\n============================");
-            System.out.println("|====Registration Menu=====|");
-            System.out.println("|1. Print all courses      |");
-            System.out.println("|2. Print completed courses|");
-            System.out.println("|3. Search for a course    |");
-            System.out.println("|4. Register for a course  |");
-            System.out.println("|5. Exit                   |");
-            System.out.println("============================\n");
-            System.out.println("Please enter a choice (1-5): ");
+            Course.RegisterMenu();
 
             //case statesments to handle user input to call methods for each choice
             int choice = input.nextInt();
