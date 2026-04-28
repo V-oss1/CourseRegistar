@@ -283,3 +283,5 @@ public class Client {
 //     4. add two reasonable funtions to this program 
 //         a. print the requiremnts for a course (prereqs)
 //         b. print the students current schedule (courses registered for next semester)
+//     5. remove a registerd course from the students schedule
+//     6. make course.java an abstract class

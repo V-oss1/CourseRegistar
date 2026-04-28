@@ -21,7 +21,7 @@ public class CourseInfo implements CollegeCourses { //File 1, writes course page
         System.out.println("Print");
         }
 
-       public void writeFile() throws IOException {
+    public void writeFile() throws IOException {
 
         String p1 = "ID"; //p# is part
         String p2 = "Name";
@@ -41,25 +41,24 @@ public class CourseInfo implements CollegeCourses { //File 1, writes course page
         writer.write(l4);
         writer.close();
         }
+        // public void createList() {
+        // //Set manually for quick testing, far less than array capacity/size
+        //     String none = ""; //No prereqs
 
-        public void createList() {
-        //Set manually for quick testing, far less than array capacity/size
-            String none = ""; //No prereqs
+        // ID[0] = "CS115";
+        // ID[1] = "CS116";
+        // ID[2] = "CS117";
 
-        ID[0] = "CS115";
-        ID[1] = "CS116";
-        ID[2] = "CS117";
+        // courseNames[0] = "Object-Oriented Programming I";
+        // courseNames[1] = "Object-Oriented Programming II";
+        // courseNames[2] = "Recursion and Algorithms";
 
-        courseNames[0] = "Object-Oriented Programming I";
-        courseNames[1] = "Object-Oriented Programming II";
-        courseNames[2] = "Recursion and Algorithms";
+        // status[0] = "98/100";
+        // status[1] = "45/50";
+        // status[2] = "40/50";
 
-        status[0] = "98/100";
-        status[1] = "45/50";
-        status[2] = "40/50";
-
-        prereqs[0] = none;
-        prereqs[1] = "CS115";
-        prereqs[2] = "CS116";
-        }
+        // prereqs[0] = none;
+        // prereqs[1] = "CS115";
+        // prereqs[2] = "CS116";
+        // }
     }
