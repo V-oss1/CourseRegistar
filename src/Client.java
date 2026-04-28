@@ -221,14 +221,16 @@ public class Client {
     public void menu() {
         Scanner input = new Scanner(System.in);
         while (true){
-            System.out.println("============================");
+            
+            System.out.println("\n============================");
             System.out.println("|====Registration Menu=====|");
             System.out.println("|1. Print all courses      |");
             System.out.println("|2. Print completed courses|");
             System.out.println("|3. Search for a course    |");
             System.out.println("|4. Register for a course  |");
             System.out.println("|5. Exit                   |");
-            System.out.println("============================");
+            System.out.println("============================\n");
+            System.out.println("Please enter a choice (1-5): ");
             
             //case statesments to handle user input to call methods for each choice
             int choice = input.nextInt();
