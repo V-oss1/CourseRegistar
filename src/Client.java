@@ -37,7 +37,7 @@ public class Client {
                     String courseID = columns[0];
                     String courseName = columns[1];
 
-                    //find if seats are avalible
+                    //find if seats are available
                     String status = columns[2];
                     String[] seats = status.split("/"); //splits by taken/total)
                     int registered = Integer.parseInt(seats[0]);
@@ -56,7 +56,7 @@ public class Client {
                 }
             }
 
-            System.out.println("Course data loaded successfully." + courseCount + " courses found.");
+            System.out.println("Course data loaded successfully. " + courseCount + " courses found.");
             scr.close();
 
     }   catch (FileNotFoundException e) {
@@ -93,7 +93,7 @@ public class Client {
             }
     }
 
-    // prints all loaded coures
+    // prints all loaded course
     public void printAllCourses() {
         for (int i = 0; i < courseCount; i++) {
             System.out.println(courseCatalog[i].getId() + " - " + courseCatalog[i].getName());
@@ -109,7 +109,7 @@ public class Client {
             System.out.println(completed[i]);
         }
     }
-    // searches for a coures by ID
+    // searches for a course by ID
     public Course searchCourseById(String id) {
         for (int i = 0; i < courseCount; i++) {
             if (courseCatalog[i].getId().equalsIgnoreCase(id)) {
@@ -131,7 +131,7 @@ public class Client {
     // writes updated course data back into course file
     public void writeFile1(String filename) {
         try {
-            // PrintWriter is usef to overwrite the file w/ new content
+            // PrintWriter is used to overwrite the file w/ new content
             PrintWriter pw = new PrintWriter(filename);
             // first line is the header row
             pw.println("ID\tName\tStatus\tPrerequisite");
@@ -221,18 +221,11 @@ public class Client {
     public void menu() {
         Scanner input = new Scanner(System.in);
         while (true){
+          //Moved over to Course.RegisterMenu for a more simple client class
 
-            System.out.println("\n============================");
-            System.out.println("|====Registration Menu=====|");
-            System.out.println("|1. Print all courses      |");
-            System.out.println("|2. Print completed courses|");
-            System.out.println("|3. Search for a course    |");
-            System.out.println("|4. Register for a course  |");
-            System.out.println("|5. Exit                   |");
-            System.out.println("============================\n");
-            System.out.println("Please enter a choice (1-5): ");
+          Course.RegisterMenu();
 
-            //case statesments to handle user input to call methods for each choice
+            //case statements to handle user input to call methods for each choice
             int choice = input.nextInt();
             input.nextLine(); // clear leftover new line
 
@@ -276,14 +269,14 @@ public class Client {
 }
 
 
-// Things  to impliment
+// Things  to implement
 //     1.print courses the student has already completed
 //     2.Merge sort the course catalog by course ID for faster searching (binary search) and to print in sorted order
 //     3.impliment binary search for searching courses by ID
-//     4. add two reasonable funtions to this program
-//         a. print the requiremnts for a course (prereqs)
+//     4. add two reasonable functions to this program
+//         a. print the requirements for a course (prereqs)
 //         b. print the students current schedule (courses registered for next semester)
-//     5. remove a registerd course from the students schedule
+//     5. remove a registered course from the students schedule
 //     6. make course.java an abstract class
 
-//Demetrius: Test123
+//7. Make the client class overall cleaner and has less defined methods.

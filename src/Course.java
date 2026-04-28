@@ -1,11 +1,11 @@
 public class Course{
     private String id; // format CSXXX
     private String name;
-    private int registeredStudents; 
+    private int registeredStudents;
     private int maxSeats;
-    private String[] prerequisites; // separated by comma 
+    private String[] prerequisites; // separated by comma
 
-    // Constructor to initialize from file data 
+    // Constructor to initialize from file data
     public Course(String id, String name, int registered, int max, String[] prereqs) {
         this.id = id;
         this.name = name;
@@ -43,7 +43,21 @@ public class Course{
         if (hasOpenSeats()) {
             registeredStudents++;
         }
-    } 
+    }
+
+  public static void RegisterMenu() {
+    final String BAR_LINE = "\n============================";
+    String menuType = "\n|====Registration Menu=====|";
+    String optionA = "\n|1. Print all courses      |";
+    String optionB = "\n|2. Print completed courses|";
+    String optionC = "\n|3. Search for a course    |";
+    String optionD = "\n|4. Register for a course  |";
+    String optionE = "\n|5. Exit                   |";
+    String requirement = "\nPlease enter a choice (1-5): ";
+
+    System.out.println(BAR_LINE + menuType + optionA + optionB + optionC + optionD + optionE + BAR_LINE + requirement);
+
+  }
 
 // returns status like 35/40
 public String getStatus() {
