@@ -159,6 +159,7 @@ public class Student {
         return true;
     }
 
+
     // adds course to next semester schedule if all checks pass
     public void register(Course course) {
         if (course == null) {
@@ -196,6 +197,29 @@ public class Student {
             }
         }
     }
+
+    public void cancelCourse(Course course) {
+        // If the course DNE, canceling should not even start 
+        if (course == null) { 
+            System.out.println("Cannot cancel: course does not exist.");
+            return;
+        }
+
+        for (int i = 0; i < registeredNextSemester.length; i++) {
+            if (registeredNextSemester[i] != null && 
+                registeredNextSemester[i].equalsIgnoreCase(course.getId())) { 
+
+                    registeredNextSemester[i] = null;
+                    course.decreaseRegisteredStudents();
+
+                    System.out.println("Succesfully canceled " + course.getId());
+                    return;
+                }
+            }
+            System.out.println("Cannot cancel: you are not registered in this course.");
+        }
+        
+
 
     // prints basic student info
     public String toString() {

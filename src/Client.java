@@ -258,8 +258,19 @@ public class Client {
                     String registerID = input.nextLine();
                     registerForCourse(registerID);
                     break;
+            
+                case 5: 
+                    // Asks the user which course they want to cancel.
+                    System.out.println("Enter a course ID to cancel: ");
+                    String cancelID = input.nextLine();
 
-                case 5:
+                    // Search for the course
+                    Course cancelCourse = searchCourseById(cancelID);
+
+                    currentStudent.cancelCourse(cancelCourse);
+                    break;
+
+                case 6:
                     writeFile1("CS-26F.txt");
                     writeFile2("A20123456.txt");
                     System.out.println("Exiting...");

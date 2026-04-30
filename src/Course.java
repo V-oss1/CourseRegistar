@@ -45,6 +45,13 @@ public class Course{
         }
     }
 
+    // Decrease the number of registered students by 1 
+    public void decreaseRegisteredStudents() { 
+        if (registeredStudents > 0 ) { 
+            registeredStudents--;
+        }
+    }
+
   public static void RegisterMenu() {
     final String BAR_LINE = "\n============================";
     String menuType = "\n|====Registration Menu=====|";
@@ -52,10 +59,11 @@ public class Course{
     String optionB = "\n|2. Print completed courses|";
     String optionC = "\n|3. Search for a course    |";
     String optionD = "\n|4. Register for a course  |";
-    String optionE = "\n|5. Exit                   |";
-    String requirement = "\nPlease enter a choice (1-5): ";
+    String optionE = "\n|5. Cancel a course        |";
+    String optionF = "\n|6. Exit                   |";
+    String requirement = "\nPlease enter a choice (1-6): ";
 
-    System.out.println(BAR_LINE + menuType + optionA + optionB + optionC + optionD + optionE + BAR_LINE + requirement);
+    System.out.println(BAR_LINE + menuType + optionA + optionB + optionC + optionD + optionE + optionF + BAR_LINE + requirement);
 
   }
 
