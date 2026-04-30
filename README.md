@@ -5,15 +5,16 @@ Each team only needs to make one submission on Canvas. The submission should inc
 realized.  
 
 Optional goals: 
-a. Use at least one user defined interface or at least one abstract class. 
+a. Use at least one user defined interface or at least one abstract class.
+    N/A
 b. Use a data structure that you implemented to handle data. (For example, an ArrayList-like data structure that’s used to handle courses) 
 
     The program uses an arrays to structure its data to be used in the program. One of the data structres for example is called, courses[] to structure its data. It takes information parsed from the input files and handles the input based on delimiters defined in the program. the client then operates using the parsed and sorted data.
 
 c. Show polymorphism in your code.
-
+    N/A
 d. Use Merge Sort algorithm while sorting.
-
+    
 e. Use Binary Search algorithm while searching.
 
 f. Realize the “cancelling a registered course for the next semester” function.
