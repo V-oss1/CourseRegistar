@@ -225,6 +225,12 @@ public class Client {
             Course.RegisterMenu();
 
             //case statesments to handle user input to call methods for each choice
+           if (!input.hasNextInt()) { 
+               System.out.println("Invalid input. Please enter a number (1-5).");
+               input.nextLine(); // clear bad input
+               continue; 
+           } 
+            
             int choice = input.nextInt();
             input.nextLine(); // clear leftover new line
 
