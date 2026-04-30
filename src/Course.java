@@ -52,7 +52,7 @@ public class Course{
         }
     }
 
-  public static void RegisterMenu() {
+public static void RegisterMenu() {
     final String BAR_LINE = "\n============================";
     String menuType = "\n|====Registration Menu=====|";
     String optionA = "\n|1. Print all courses      |";
@@ -65,7 +65,7 @@ public class Course{
 
     System.out.println(BAR_LINE + menuType + optionA + optionB + optionC + optionD + optionE + optionF + BAR_LINE + requirement);
 
-  }
+}
 
 // returns status like 35/40
 public String getStatus() {
@@ -74,4 +74,5 @@ public String getStatus() {
     public String toString() {
         return id + " - " + name + " (" + getStatus() + ")";
     }
+//course functions    
 }

@@ -225,12 +225,6 @@ public class Client {
             Course.RegisterMenu();
 
             //case statesments to handle user input to call methods for each choice
-           if (!input.hasNextInt()) { 
-               System.out.println("Invalid input. Please enter a number (1-6).");
-               input.nextLine(); // clear bad input
-               continue; 
-           } 
-            
             int choice = input.nextInt();
             input.nextLine(); // clear leftover new line
 
@@ -258,19 +252,8 @@ public class Client {
                     String registerID = input.nextLine();
                     registerForCourse(registerID);
                     break;
-            
-                case 5: 
-                    // Asks the user which course they want to cancel.
-                    System.out.print("Enter a course ID to cancel: ");
-                    String cancelID = input.nextLine();
 
-                    // Search for the course
-                    Course cancelCourse = searchCourseById(cancelID);
-
-                    currentStudent.cancelCourse(cancelCourse);
-                    break;
-
-                case 6:
+                case 5:
                     writeFile1("CS-26F.txt");
                     writeFile2("A20123456.txt");
                     System.out.println("Exiting...");
