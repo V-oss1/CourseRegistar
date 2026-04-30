@@ -60,10 +60,12 @@ public static void RegisterMenu() {
     String optionC = "\n|3. Search for a course    |";
     String optionD = "\n|4. Register for a course  |";
     String optionE = "\n|5. Cancel a course        |";
-    String optionF = "\n|6. Exit                   |";
+    String optionF = "\n|6. Show Requirments       |";
+    String optionG = "\n|7. Currently Registered   |";
+    String optionH = "\n|8. Exit                   |";
     String requirement = "\nPlease enter a choice (1-6): ";
 
-    System.out.println(BAR_LINE + menuType + optionA + optionB + optionC + optionD + optionE + optionF + BAR_LINE + requirement);
+    System.out.println(BAR_LINE + menuType + optionA + optionB + optionC + optionD + optionE + optionF + optionG + optionH + BAR_LINE + requirement);
 
 }
 
