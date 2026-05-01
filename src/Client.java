@@ -299,8 +299,7 @@ public class Client {
                 case 3:
                     System.out.print("Enter course ID: ");
                     String searchID = input.nextLine();
-                    //Course result = searchCourseById(searchID);
-                  String result = Course.searchCourseById(courseCatalog, searchID, "CS100", "CS118");
+                    Course result = searchCourseById(searchID);
 
                     if (result == null) {
                         System.out.println("Course not found.");
