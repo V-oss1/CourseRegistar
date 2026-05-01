@@ -5,11 +5,6 @@ public class Course{
     private int maxSeats;
     private String[] prerequisites; // separated by comma
 
-  private String targetClass;
-  private int targetInt;
-  private int lowInt;
-  private int highInt;
-
     // Constructor to initialize from file data
     public Course(String id, String name, int registered, int max, String[] prereqs) {
         this.id = id;
@@ -71,94 +66,4 @@ public String getStatus() {
     public String toString() {
         return id + " - " + name + " (" + getStatus() + ")";
     }
-
-public int seperateBinarySearch(String target) {
-  //Seperate
-  String classType = "";
-  int intTarget;
-  int lowInt;
-  int highInt;
-
-  int inc = 0;
-  int counter = 0;
-
-  char test = target.charAt(inc); //initial
-  while (Character.isDigit(test) == false) {
-    classType+=test;
-    inc++;
-    counter++;
-
-    test = target.charAt(inc);
-  }
-
-  char tempA = target.charAt(inc);
-  String tempTargetInt = "";
-
-  //gets numbers
-  while (inc < target.length()) {
-
-    tempA = target.charAt(inc);
-    inc++;
-    tempTargetInt += tempA;
-
-  }
-
-  intTarget = Integer.parseInt(tempTargetInt);
-  return intTarget;
-
-}
-
-  //Return a string, being toString of course
-  public static String searchCourseById(Course[] listC ,String target, String low, String high) {
-     //Course[] courseCatalog = new Course[100]; //set max courses
-    //listC = courseCatalog;
-
-    //Seperate
-    String classType = "";
-
-    int lowInt;
-    int highInt;
-
-    //ERROR CHECKING HERE
-
-     //String index = listC[listC.length-1].toString(); //max place
-    //System.out.println(index);
-    //String index = "a";
-    //System.out.println(listC[listC.length-1]);
-
-    String index = listC[1].toString(); //TEST
-
-    //int highInt = Integer.parseInt(high);
-    //int lowInt = Integer.parseInt(low);
-
-    int lowCheck = low.compareTo(high);
-    int highCheck = high.compareTo(low);
-
-    /*
-     while (low.compareTo(high) <= high) {
-
-     int n = lowInd + ((highInt - lowInt)/2);
-     String mid = listC[n].toString();
-
-     if (mid.compareTo(target) < target.compareTo(mid)) {
-     int midInt = Integer.parseInt(mid);
-       lowInt = midInt + 1;
-     }
-
-     else if (mid.compareTo(target) > target.compareTo(mid)) {
-       int midInt = Integer.parseInt(mid);
-     highInt = midInt - 1;
-     }
-
-     else if (mid.equals(target)) {
-     index = mid;
-     break;
-     }
-
-     }*/
-    return index;
-
-     }
-
-
 }

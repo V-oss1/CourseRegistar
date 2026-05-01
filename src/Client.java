@@ -170,6 +170,16 @@ public class Client {
             System.out.println("Error writing course file.");
         }
     }
+    // Cancels a course for the current student
+    public void cancelRegisteredCourse(String id) {
+        Course foundCourse = searchCourseById(id);
+
+        if (foundCourse == null) {
+            System.out.println("Course not found in the catalog.");
+        } else {
+            currentStudent.cancelCourse(foundCourse);
+        }
+    }
 
     // writes updated student data back into student file
     public void writeFile2(String filename) {
@@ -217,6 +227,57 @@ public class Client {
             System.out.println("Error writing student file.");
         }
     }
+    // prints the prerequisites for selected course
+    public void printCoursePrerequisites(String id) {
+        Course foundCourse = searchCourseById(id);
+
+        if (foundCourse == null) {
+            System.out.println("Course not found.");
+            return;
+        }
+
+        String[] prereqs = foundCourse.getPrerequisites();
+
+        // Check if the array is null or empty
+        if (prereqs == null || prereqs.length == 0) {
+            System.out.println(foundCourse.getId() + " has no prerequisites.");
+        } else {
+            System.out.println("Prerequisites for " + foundCourse.getId() + ":");
+            for (int i = 0; i < prereqs.length; i++) {
+            System.out.println("- " + prereqs[i].trim());
+            }
+        }
+    }
+
+        // prints the courses the student is currently registered for next semester
+    public void printCurrentSchedule() {
+        String[] registered = currentStudent.getRegisteredNextSemester();
+        boolean hasCourses = false;
+
+        System.out.println("\n--- Current Schedule for " + currentStudent.getName() + " ---");
+        
+        // Loop through the 5 possible registration spots
+        for (int i = 0; i < registered.length; i++) {
+            if (registered[i] != null) {
+                hasCourses = true;
+                // Find the full course details to make the output look nice
+                Course c = searchCourseById(registered[i]);
+                
+                if (c != null) {
+                    System.out.println("- " + c.toString());
+                } else {
+                    // Fallback just in case a course ID exists but the course object doesn't
+                    System.out.println("- " + registered[i] + " (Details not found in catalog)");
+                }
+            }
+        }
+
+        // If the array was entirely nulls
+        if (!hasCourses) {
+            System.out.println("You are not currently registered for any courses next semester.");
+        }
+        System.out.println("----------------------------------");
+    }
 
     public void menu() {
         Scanner input = new Scanner(System.in);
@@ -255,6 +316,21 @@ public class Client {
                     break;
 
                 case 5:
+                    System.out.print("Enter course ID to cancel: ");
+                    String cancelID = input.nextLine();
+                    cancelRegisteredCourse(cancelID);
+                    break;
+                case 6:
+                    System.out.print("Enter course ID to view prerequisites: ");
+                    String prereqID = input.nextLine();
+                    printCoursePrerequisites(prereqID);
+                    break;
+
+                case 7:
+                    printCurrentSchedule();
+                    break;
+
+                case 8:
                     writeFile1("CS-26F.txt");
                     writeFile2("A20123456.txt");
                     System.out.println("Exiting...");
