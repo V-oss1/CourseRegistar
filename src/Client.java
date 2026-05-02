@@ -119,7 +119,7 @@ public class Client {
         return null;
     }
     // register for a course by ID
-    public void registerForCourse(String id) {
+    /*public void registerForCourse(String id) {
         Course foundCourse = searchCourseById(id);
 
         if (foundCourse == null) {
@@ -127,7 +127,7 @@ public class Client {
         } else {
             currentStudent.register(foundCourse);
         }
-    }
+    }*/
     // writes updated course data back into course file
     public void writeFile1(String filename) {
         try {
@@ -255,14 +255,14 @@ public class Client {
         boolean hasCourses = false;
 
         System.out.println("\n--- Current Schedule for " + currentStudent.getName() + " ---");
-        
+
         // Loop through the 5 possible registration spots
         for (int i = 0; i < registered.length; i++) {
             if (registered[i] != null) {
                 hasCourses = true;
                 // Find the full course details to make the output look nice
                 Course c = searchCourseById(registered[i]);
-                
+
                 if (c != null) {
                     System.out.println("- " + c.toString());
                 } else {
@@ -299,7 +299,8 @@ public class Client {
                 case 3:
                     System.out.print("Enter course ID: ");
                     String searchID = input.nextLine();
-                    Course result = searchCourseById(searchID);
+                    //low and high can be user generated
+                   String result = Course.searchCourseById(courseCatalog, searchID, "CS100", "CS442");
 
                     if (result == null) {
                         System.out.println("Course not found.");
@@ -311,7 +312,7 @@ public class Client {
                 case 4:
                     System.out.print("Enter course ID to register: ");
                     String registerID = input.nextLine();
-                    registerForCourse(registerID);
+                    //registerForCourse(registerID); work on later
                     break;
 
                 case 5:
