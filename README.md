@@ -16,6 +16,7 @@ c. Show polymorphism in your code.
 d. Use Merge Sort algorithm while sorting.
     
 e. Use Binary Search algorithm while searching.
+    The function searchCourseByID uses the Binary Search algorithim to find the user's target or key value. Each of the values, such as the low, target, and high, are values that correspond to the Course object array. The indexes of each value are obtained, then compared. 
 
 f. Realize the “cancelling a registered course for the next semester” function.
     To add this function the course reads the current students registered courses then requests what course they want to remove. if the student is registered for this course the student file and courselist are both updated to remove the student from the class they are registered for.
