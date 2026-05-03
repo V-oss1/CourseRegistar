@@ -16,6 +16,9 @@ public class Client {
         client.readFile1("CS-26F.txt");
         client.readFile2("A20123456.txt");
 
+        // sort courses by course ID before using the binary search
+        client.sortCourses();
+
         // start menu after files are loaded
         client.menu();
 
@@ -118,8 +121,60 @@ public class Client {
         }
         return null;
     }
+
+    // Use binary search to find a course by its ID
+    // Assumes the courseCatalog array is already sorted which it will be in another method 
+    public Course binarySearchCourse(String id){
+        int low = 0;
+        int high = courseCount - 1; // end of search range 
+
+        while (low <= high) {
+            int mid = (low + high) / 2; // middle index 
+          //   System.out.println("Index: " + mid + " (" + courseCatalog[mid].getId() + ")");
+          // KEEP THIS LINE COMMENTED OUT ITS JUST TO TEST THE BINARY SEARCH 
+
+            // make sure to compare the middle with the target 
+            int compare = courseCatalog[mid].getId().compareToIgnoreCase(id);
+
+            if (compare == 0){
+                return courseCatalog[mid];
+            } else if (compare < 0) {
+                // if target is larger search the right half, ignore the left 
+                low = mid + 1;
+            } else { 
+                // ignore the right side, search the left side
+                high = mid - 1;
+            }
+        }
+        // course was not found 
+        return null;
+}
+
+    // sorts the courseCatalog using bubble sort 
+    public void sortCourses() { 
+        for (int i = 0; i < courseCount - 1; i ++){ // two loops required one for passes other for elements next to each other
+            for (int j = 0; j < courseCount - i - 1; j++){
+                if (courseCatalog[j].getId().compareToIgnoreCase(courseCatalog[j + 1].getId()) > 0 ) { 
+                    // this swaps them if they are in the wrong order 
+                    Course temp = courseCatalog[j];
+                    courseCatalog[j] = courseCatalog[j + 1];
+                    courseCatalog[j + 1] = temp;
+                } 
+            }
+        }
+    }
+    
+
+
+    
+
+
+
+
+
+
     // register for a course by ID
-    /*public void registerForCourse(String id) {
+    public void registerForCourse(String id) {
         Course foundCourse = searchCourseById(id);
 
         if (foundCourse == null) {
@@ -127,7 +182,7 @@ public class Client {
         } else {
             currentStudent.register(foundCourse);
         }
-    }*/
+    }
     // writes updated course data back into course file
     public void writeFile1(String filename) {
         try {
@@ -168,16 +223,6 @@ public class Client {
             System.out.println("Course file updated.");
         } catch (IOException e) {
             System.out.println("Error writing course file.");
-        }
-    }
-    // Cancels a course for the current student
-    public void cancelRegisteredCourse(String id) {
-        Course foundCourse = searchCourseById(id);
-
-        if (foundCourse == null) {
-            System.out.println("Course not found in the catalog.");
-        } else {
-            currentStudent.cancelCourse(foundCourse);
         }
     }
 
@@ -227,57 +272,6 @@ public class Client {
             System.out.println("Error writing student file.");
         }
     }
-    // prints the prerequisites for selected course
-    public void printCoursePrerequisites(String id) {
-        Course foundCourse = searchCourseById(id);
-
-        if (foundCourse == null) {
-            System.out.println("Course not found.");
-            return;
-        }
-
-        String[] prereqs = foundCourse.getPrerequisites();
-
-        // Check if the array is null or empty
-        if (prereqs == null || prereqs.length == 0) {
-            System.out.println(foundCourse.getId() + " has no prerequisites.");
-        } else {
-            System.out.println("Prerequisites for " + foundCourse.getId() + ":");
-            for (int i = 0; i < prereqs.length; i++) {
-            System.out.println("- " + prereqs[i].trim());
-            }
-        }
-    }
-
-        // prints the courses the student is currently registered for next semester
-    public void printCurrentSchedule() {
-        String[] registered = currentStudent.getRegisteredNextSemester();
-        boolean hasCourses = false;
-
-        System.out.println("\n--- Current Schedule for " + currentStudent.getName() + " ---");
-
-        // Loop through the 5 possible registration spots
-        for (int i = 0; i < registered.length; i++) {
-            if (registered[i] != null) {
-                hasCourses = true;
-                // Find the full course details to make the output look nice
-                Course c = searchCourseById(registered[i]);
-
-                if (c != null) {
-                    System.out.println("- " + c.toString());
-                } else {
-                    // Fallback just in case a course ID exists but the course object doesn't
-                    System.out.println("- " + registered[i] + " (Details not found in catalog)");
-                }
-            }
-        }
-
-        // If the array was entirely nulls
-        if (!hasCourses) {
-            System.out.println("You are not currently registered for any courses next semester.");
-        }
-        System.out.println("----------------------------------");
-    }
 
     public void menu() {
         Scanner input = new Scanner(System.in);
@@ -286,6 +280,12 @@ public class Client {
             Course.RegisterMenu();
 
             //case statesments to handle user input to call methods for each choice
+           if (!input.hasNextInt()) { 
+               System.out.println("Invalid input. Please enter a number (1-6).");
+               input.nextLine(); // clear bad input
+               continue; 
+           } 
+            
             int choice = input.nextInt();
             input.nextLine(); // clear leftover new line
 
@@ -299,8 +299,8 @@ public class Client {
                 case 3:
                     System.out.print("Enter course ID: ");
                     String searchID = input.nextLine();
-                    //low and high can be user generated
-                   String result = Course.searchCourseById(courseCatalog, searchID, "CS100", "CS442");
+                    // had to switch this line to use binary search 
+                    Course result = binarySearchCourse(searchID);
 
                     if (result == null) {
                         System.out.println("Course not found.");
@@ -312,25 +312,21 @@ public class Client {
                 case 4:
                     System.out.print("Enter course ID to register: ");
                     String registerID = input.nextLine();
-                    //registerForCourse(registerID); work on later
+                    registerForCourse(registerID);
                     break;
-
-                case 5:
-                    System.out.print("Enter course ID to cancel: ");
+            
+                case 5: 
+                    // Asks the user which course they want to cancel.
+                    System.out.print("Enter a course ID to cancel: ");
                     String cancelID = input.nextLine();
-                    cancelRegisteredCourse(cancelID);
+
+                    // Search for the course
+                    Course cancelCourse = searchCourseById(cancelID);
+
+                    currentStudent.cancelCourse(cancelCourse);
                     break;
+
                 case 6:
-                    System.out.print("Enter course ID to view prerequisites: ");
-                    String prereqID = input.nextLine();
-                    printCoursePrerequisites(prereqID);
-                    break;
-
-                case 7:
-                    printCurrentSchedule();
-                    break;
-
-                case 8:
                     writeFile1("CS-26F.txt");
                     writeFile2("A20123456.txt");
                     System.out.println("Exiting...");
@@ -345,14 +341,3 @@ public class Client {
 }
 
 
-// Things  to impliment
-//     1.print courses the student has already completed
-//     2.Merge sort the course catalog by course ID for faster searching (binary search) and to print in sorted order
-//     3.impliment binary search for searching courses by ID
-//     4. add two reasonable funtions to this program
-//         a. print the requiremnts for a course (prereqs)
-//         b. print the students current schedule (courses registered for next semester)
-//     5. remove a registerd course from the students schedule
-//     6. make course.java an abstract class
-
-//Demetrius: Test123
