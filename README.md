@@ -1,29 +1,14 @@
-Each team only needs to make one submission on Canvas. The submission should include three following items.  
-1. A class diagram showing the design of your program. 
-2. A zipped file containing the whole java project of your program.  
-3. A short readme file explaining which of the optional goals are realized in the program and how they are 
-realized.  
+This program is a simple course registration system written in Java. It reads course information and student information from text files, lets the user interact with the program through a menu, and then updates the files when the program exits.
 
-Optional goals: 
-a. Use at least one user defined interface or at least one abstract class.
-    N/A
-b. Use a data structure that you implemented to handle data. (For example, an ArrayList-like data structure that’s used to handle courses) 
+Optional Goals Implemented:
 
-    The program uses an arrays to structure its data to be used in the program. One of the data structres for example is called, courses[] to structure its data. It takes information parsed from the input files and handles the input based on delimiters defined in the program. the client then operates using the parsed and sorted data.
+e. Binary Search
+Binary search is used to find a course by its ID. Before using binary search, the course list is sorted by course ID. The program then checks the middle of the list and keeps narrowing it down until the course is found or determined to not exist.
 
-c. Show polymorphism in your code.
-    N/A
-d. Use Merge Sort algorithm while sorting.
-    
-e. Use Binary Search algorithm while searching.
-    The function searchCourseByID uses the Binary Search algorithim to find the user's target or key value. Each of the values, such as the low, target, and high, are values that correspond to the Course object array. The indexes of each value are obtained, then compared. 
+f. Cancel a Registered Course
+The program allows the user to cancel a course they are registered for. If the course is found in the student’s schedule, it is removed and the number of registered students in that course is decreased. If the student is not registered in that course, an error message is shown.
 
-f. Realize the “cancelling a registered course for the next semester” function.
-    To add this function the course reads the current students registered courses then requests what course they want to remove. if the student is registered for this course the student file and courselist are both updated to remove the student from the class they are registered for.
-    if not the program gives an error saying that the course is not one they are registered for.
-g. Add two reasonable and useful functions to this program.
-    1. Added a function to show the requirments for a specific course
-    2. Aded a function to show currently registerd courses for the semsester.
-h. Handle exceptions and invalid inputs without breaking the flow.
-    The program impliments validation using switch statements for the main program. if a unexpected awnser occurs the program will print the error and return to the function. 
- 
+h. Handle Invalid Input
+The program checks user input before using it. If the user enters something invalid in the menu, the program prints an error message and goes back to the menu instead of crashing.
+
+The program uses arrays to store and manage course and student data.
